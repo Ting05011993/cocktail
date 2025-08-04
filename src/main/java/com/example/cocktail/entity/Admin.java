@@ -1,6 +1,8 @@
 package com.example.cocktail.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -16,13 +18,14 @@ public class Admin {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(length = 20, nullable = false, unique = true)
+	@NotBlank
 	private String account;
 
-	@Column(length = 255, nullable = false)
+	@NotBlank
 	private String password;
 
-	@Column(name = "create_dt", nullable = false)
+	@NotNull
+	@Column(name = "create_dt")
 	private LocalDateTime createDt;
 
 	@Column(name = "update_dt")
@@ -31,10 +34,12 @@ public class Admin {
 	@Column(name = "last_login")
 	private LocalDateTime lastLogin;
 
-	@Column(name = "is_active", nullable = false)
+	@NotNull
+	@Column(name = "is_active")
 	private Boolean isActive;
 
+	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "role_id", nullable = false)
+	@JoinColumn(name = "role_id")
 	private Role role;
 }

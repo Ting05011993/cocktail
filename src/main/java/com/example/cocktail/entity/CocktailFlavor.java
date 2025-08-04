@@ -1,28 +1,31 @@
 package com.example.cocktail.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "role")
+@IdClass(CocktailFlavorId.class)
+@Table(name = "cocktail_flavor")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Role {
+public class CocktailFlavor {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@ManyToOne
+	@JoinColumn(name = "cocktail_id")
+	private Cocktail cocktail;
 
-	@NotBlank
-	@Column(name = "role_name")
-	private String roleName;
+	@Id
+	@ManyToOne
+	@JoinColumn(name = "flavor_id")
+	private Flavor flavor;
 
 	@NotNull
 	@Column(name = "create_dt")
