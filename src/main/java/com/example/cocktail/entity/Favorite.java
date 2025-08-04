@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@IdClass(MemberFavoriteId.class)
+@IdClass(FavoriteId.class)
 public class Favorite {
 
 	@Id

@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data  // lombok
 @NoArgsConstructor
 @AllArgsConstructor
-public class MemberFavoriteId implements Serializable {
+public class FavoriteId implements Serializable {
 
 	private Long memberId;
 	private Long cocktailId;
