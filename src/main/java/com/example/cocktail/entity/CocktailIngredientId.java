@@ -14,6 +14,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CocktailIngredientId implements Serializable {
-	private Long cocktailId;
-	private Integer ingredientId;
+
+    private Long cocktailId;
+    private Integer ingredientId;
 }

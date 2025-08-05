@@ -19,49 +19,58 @@ import java.util.List;
 @AllArgsConstructor
 public class Cocktail {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@NotBlank
-	@Column(name = "cocktail_name")
-	private String cocktailName;
+    @NotBlank
+    @Column(name = "cocktail_name")
+    private String cocktailName;
 
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name = "glass_id", referencedColumnName = "id")
-	private Glass glass;
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "glass_id", referencedColumnName = "id")
+    private Glass glass;
 
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name = "base_id", referencedColumnName = "id")
-	private Base base;
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "base_id", referencedColumnName = "id")
+    private Base base;
 
-	@NotNull
-	@Column(name = "is_Alcoholic")
-	private Boolean isAlcoholic;
+    @NotNull
+    @Column(name = "is_Alcoholic")
+    private Boolean isAlcoholic;
 
-	@NotBlank
-	private String description;
+    @NotBlank
+    private String description;
 
-	@NotBlank
-	@Column(columnDefinition = "TEXT")
-	private String method;
+    @NotBlank
+    @Column(columnDefinition = "TEXT")
+    private String method;
 
-	@NotBlank
-	private String photoUrl;
+    @NotBlank
+    private String photoUrl;
 
-	@OneToMany(mappedBy = "cocktail")
-	private List<CocktailIngredient> ingredients;
+    @OneToMany(mappedBy = "cocktail")
+    private List<CocktailIngredient> ingredients;
 
-	@OneToMany(mappedBy = "cocktail")
-	private List<Favorite> favorite;
+    @OneToMany(mappedBy = "cocktail")
+    private List<Favorite> favorite;
 
-	@NotNull
-	@Column(name = "create_dt")
-	private LocalDateTime createDt;
+    @NotNull
+    @ManyToMany
+    @JoinTable(
+            name = "cocktail_flavor",
+            joinColumns = @JoinColumn(name = "cocktail_id"),
+            inverseJoinColumns = @JoinColumn(name = "flavor_id")
+    )
+    private List<Flavor> flavors;
 
-	@NotNull
-	@Column(name = "update_dt")
-	private LocalDateTime updateDt;
+    @NotNull
+    @Column(name = "create_dt")
+    private LocalDateTime createDt;
+
+    @NotNull
+    @Column(name = "update_dt")
+    private LocalDateTime updateDt;
 }

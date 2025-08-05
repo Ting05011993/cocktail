@@ -1,7 +1,6 @@
 package com.example.cocktail.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,30 +11,31 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "cocktail_ingredient")
 @IdClass(CocktailIngredientId.class)
 public class CocktailIngredient {
 
-	@Id
-	private Long cocktailId;
+    @Id
+    private Long cocktailId;
 
-	@Id
-	private Integer ingredientId;
+    @Id
+    private Integer ingredientId;
 
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name = "cocktail_id", referencedColumnName = "id")
-	private Cocktail cocktail;
+    @ManyToOne
+    @MapsId("cocktailId")
+    @JoinColumn(name = "cocktail_id", referencedColumnName = "id")
+    private Cocktail cocktail;
 
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name = "ingredient_id", referencedColumnName = "id")
-	private Ingredient ingredient;
+    @ManyToOne
+    @MapsId("ingredientId")
+    @JoinColumn(name = "ingredient_id", referencedColumnName = "id")
+    private Ingredient ingredient;
 
-	private String amount;
+    private String amount;
 
-	@Column(name = "create_dt")
-	private LocalDateTime createDt;
+    @Column(name = "create_dt")
+    private LocalDateTime createDt;
 
-	@Column(name = "update_dt")
-	private LocalDateTime updateDt;
+    @Column(name = "update_dt")
+    private LocalDateTime updateDt;
 }

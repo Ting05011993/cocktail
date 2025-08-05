@@ -18,19 +18,19 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Flavor {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	@NotBlank
-	@Column(name = "flavor_name")
-	private String flavorName;
+    @NotBlank
+    @Column(name = "flavor_name")
+    private String flavorName;
 
-	@NotNull
-	@Column(name = "create_dt")
-	private LocalDateTime createDt;
+    @NotNull
+    @Column(name = "create_dt")
+    private LocalDateTime createDt;
 
-	@NotNull
-	@Column(name = "update_dt")
-	private LocalDateTime updateDt;
+    @NotNull
+    @Column(name = "update_dt")
+    private LocalDateTime updateDt;
 }

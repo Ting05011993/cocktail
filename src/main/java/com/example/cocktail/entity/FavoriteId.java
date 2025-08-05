@@ -14,6 +14,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class FavoriteId implements Serializable {
 
-	private Long memberId;
-	private Long cocktailId;
+    private Long memberId;
+    private Long cocktailId;
 }

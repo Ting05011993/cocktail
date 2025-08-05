@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "base")
@@ -18,19 +19,22 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Base {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	@NotBlank
-	@Column(name = "base_name")
-	private String baseName;
+    @NotBlank
+    @Column(name = "base_name")
+    private String baseName;
 
-	@NotNull
-	@Column(name = "create_dt")
-	private LocalDateTime createDt;
+    @OneToMany(mappedBy = "base")
+    private List<Cocktail> cocktails;
 
-	@NotNull
-	@Column(name = "update_dt")
-	private LocalDateTime updateDt;
+    @NotNull
+    @Column(name = "create_dt")
+    private LocalDateTime createDt;
+
+    @NotNull
+    @Column(name = "update_dt")
+    private LocalDateTime updateDt;
 }

@@ -16,23 +16,23 @@ import java.time.LocalDateTime;
 @IdClass(FavoriteId.class)
 public class Favorite {
 
-	@Id
-	private Long memberId;
+    @Id
+    private Long memberId;
 
-	@Id
-	private Long cocktailId;
+    @Id
+    private Long cocktailId;
 
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name = "member_id", referencedColumnName = "id")
-	private Member member;
+    @ManyToOne
+    @MapsId("memberId")
+    @JoinColumn(name = "member_id", referencedColumnName = "id")
+    private Member member;
 
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name = "cocktail_id", referencedColumnName = "id")
-	private Cocktail cocktail;
+    @ManyToOne
+    @MapsId("cocktailId")
+    @JoinColumn(name = "cocktail_id", referencedColumnName = "id")
+    private Cocktail cocktail;
 
-	@NotNull
-	@Column(name = "create_dt")
-	private LocalDateTime createDt;
+    @NotNull
+    @Column(name = "create_dt")
+    private LocalDateTime createDt;
 }
