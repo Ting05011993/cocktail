@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class CocktailServiceImpl implements CocktailService{
+public class CocktailServiceImpl implements CocktailService {
 
 	@Autowired
 	private CocktailRepository repo;
@@ -33,12 +33,12 @@ public class CocktailServiceImpl implements CocktailService{
 
 	@Override
 	public List<Cocktail> findByNameContaining(String input) {
-		return repo.findByNameContaining(input);
+		return repo.findByCocktailNameContaining(input);
 	}
 
 	@Override
 	public List<Cocktail> getCocktailByBase(Integer baseId) {
-		return repo.getCocktailByBase(baseId);
+		return repo.getCocktailByBaseId(baseId);
 	}
 
 	@Override

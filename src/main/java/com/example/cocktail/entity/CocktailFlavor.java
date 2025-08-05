@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 
@@ -18,13 +17,19 @@ import java.time.LocalDateTime;
 public class CocktailFlavor {
 
 	@Id
-	@ManyToOne
-	@JoinColumn(name = "cocktail_id")
-	private Cocktail cocktail;
+	private Long cocktailId;
 
 	@Id
+	private Integer flavorId;
+
+	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "flavor_id")
+	@JoinColumn(name = "cocktail_id", referencedColumnName = "id")
+	private Cocktail cocktail;
+
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "flavor_id", referencedColumnName = "id")
 	private Flavor flavor;
 
 	@NotNull

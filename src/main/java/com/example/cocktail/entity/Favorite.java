@@ -2,7 +2,9 @@ package com.example.cocktail.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -15,13 +17,19 @@ import java.time.LocalDateTime;
 public class Favorite {
 
 	@Id
-	@ManyToOne
-	@JoinColumn(name = "member_id")
-	private Member member;
+	private Long memberId;
 
 	@Id
+	private Long cocktailId;
+
+	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "cocktail_id")
+	@JoinColumn(name = "member_id", referencedColumnName = "id")
+	private Member member;
+
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "cocktail_id", referencedColumnName = "id")
 	private Cocktail cocktail;
 
 	@NotNull

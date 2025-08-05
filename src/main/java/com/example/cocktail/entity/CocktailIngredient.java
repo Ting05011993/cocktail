@@ -1,9 +1,7 @@
 package com.example.cocktail.entity;
 
-import com.example.cocktail.entity.Cocktail;
-import com.example.cocktail.entity.CocktailIngredientId;
-import com.example.cocktail.entity.Ingredient;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,13 +16,19 @@ import java.time.LocalDateTime;
 public class CocktailIngredient {
 
 	@Id
-	@ManyToOne
-	@JoinColumn(name = "cocktail_id")
-	private Cocktail cocktail;
+	private Long cocktailId;
 
 	@Id
+	private Integer ingredientId;
+
+	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "ingredient_id")
+	@JoinColumn(name = "cocktail_id", referencedColumnName = "id")
+	private Cocktail cocktail;
+
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "ingredient_id", referencedColumnName = "id")
 	private Ingredient ingredient;
 
 	private String amount;

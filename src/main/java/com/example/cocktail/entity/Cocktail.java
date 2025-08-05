@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -29,12 +28,14 @@ public class Cocktail {
 	private String cocktailName;
 
 	@NotNull
-	@JoinColumn(name = "glass_id")
-	private Glass glassId;
+	@ManyToOne
+	@JoinColumn(name = "glass_id", referencedColumnName = "id")
+	private Glass glass;
 
 	@NotNull
-	@JoinColumn(name = "base_id")
-	private Base baseId;
+	@ManyToOne
+	@JoinColumn(name = "base_id", referencedColumnName = "id")
+	private Base base;
 
 	@NotNull
 	@Column(name = "is_Alcoholic")
